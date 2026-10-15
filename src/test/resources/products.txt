@@ -1,0 +1,3 @@
+# Product names used by the parameterized checkout regression test
+ZARA COAT 3
+ADIDAS ORIGINAL
