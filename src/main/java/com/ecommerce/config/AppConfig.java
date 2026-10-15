@@ -3,6 +3,7 @@ package com.ecommerce.config;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Properties;
 
 public final class AppConfig {
     private static final Properties PROPERTIES = loadProperties();
