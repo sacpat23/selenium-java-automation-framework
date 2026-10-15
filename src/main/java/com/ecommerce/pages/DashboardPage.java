@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class DashboardPage extends BasePage {
     static final By PRODUCT_CARDS = By.cssSelector(".card-body");
     private static final By CART_LINK = By.cssSelector("[routerlink*='cart']");
+    private static final By LOADING_OVERLAY = By.cssSelector(".ngx-spinner-overlay");
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -31,6 +32,7 @@ public class DashboardPage extends BasePage {
             String title = product.findElement(By.tagName("b")).getText().trim();
             if (title.equals(productName)) {
                 product.findElement(By.xpath(".//button[contains(normalize-space(.), 'Add To Cart')]")).click();
+                waitForLoadingToFinish();
                 return;
             }
         }
@@ -38,6 +40,11 @@ public class DashboardPage extends BasePage {
     }
 
     public void openCart() {
+        waitForLoadingToFinish();
         wait.until(ExpectedConditions.elementToBeClickable(CART_LINK)).click();
+    }
+
+    private void waitForLoadingToFinish() {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(LOADING_OVERLAY));
     }
 }
